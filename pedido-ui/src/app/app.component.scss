@@ -1,0 +1,31 @@
+.custom-navbar {
+    background-color: #343a40; /* Dark background color */
+    padding: 10px 20px; /* Add some padding */
+  }
+  
+  .custom-navbar .nav-link {
+    color: #ffffff; /* White text color */
+    font-size: 18px; /* Larger font size */
+    padding: 10px 15px; /* Add some padding */
+  }
+  
+  .custom-navbar .nav-link:hover {
+    color: #007bff; /* Blue color on hover */
+    background-color: #495057; /* Slightly lighter background on hover */
+    border-radius: 5px; /* Rounded corners on hover */
+  }
+  
+  .custom-navbar .nav-item.active .nav-link {
+    color: #ffc107; /* Yellow color for the active link */
+  }
+  
+  .custom-navbar .navbar-collapse {
+    justify-content: flex-start; /* Align items to the start */
+  }
+  
+  @media (max-width: 992px) {
+    .custom-navbar .navbar-collapse {
+      justify-content: center; /* Center items on smaller screens */
+    }
+  }
+  
