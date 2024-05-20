@@ -2,13 +2,26 @@
 
 Este software é uma solução proposta para para uma _startup_ de lanchonete. Para desenvolvê-la foram utilizadas as tecnologias de .net Core para o _Backend_ e Angular 7 para o _Frontend_.
 
-## Instruções para rodar o sistema
+## Instruções para rodar o sistema com docker
 
 O sistema foi desenvolvido utilizando containers no docker. Com o docker devidamente instalado siga as seguintes instruções:
 
 Para iniciar o sistema bastar entra na pastas Lanchonete e executar o appstart.bat. Depois de iniciado todos os serviços do docker, o sistema de _Frontend_ vai responder em [http://localhost](http://localhost) (está utilizando a porta 80). O backend irá responder em [http://localhost:5000/api/values](http:localhost:5000/api/values).
 
 Para desligar o sistema use o appstop.bat.
+
+## Instruções para rodar o front-end sem docker
+
+1) git clone https://github.com/BrunoGabriel123/iglu-soft.git
+2) cd iglu-soft
+3) cd pedido-ui
+4) npm install
+5) npm start
+
+## Instruções para rodar o back-end sem docker
+
+1) git clone https://github.com/BrunoGabriel123/iglu-soft.git
+2) Abra o Visual Studio na solution, de um clean e um build
 
 ## Problema proposto
 
