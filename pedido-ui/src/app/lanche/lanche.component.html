@@ -19,4 +19,4 @@
 </div>
 <br>
 <br>
-<app-ingredientes [lanche]='lancheSelecionado' (cancelar)='onCancelar()' ></app-ingredientes>
+<app-ingredientes [lanche]='lancheSelecionado' *ngIf="lancheSelecionado" (cancelar)='onCancelar()' ></app-ingredientes>

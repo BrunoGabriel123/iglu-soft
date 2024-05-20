@@ -18,7 +18,11 @@
         </tr>
       </tbody>
     </table>
-    <button type="submit" [disabled]='!lancheSelecioando()' class="btn btn-primary custom-submit-button">Finalizar Pedido</button> 
-    <button type="button" class="btn btn-link custom-cancel-button" (click)='onCancelar()'>Cancelar</button>
+    <div style="margin-bottom: 5rem;">
+      <button type="submit" [disabled]='!lancheSelecioando()' class="btn btn-primary custom-submit-button">Finalizar Pedido</button> 
+      <button type="button" class="btn btn-link custom-cancel-button" (click)='onCancelar()'>Cancelar</button>
+    </div>
+    
   </form>
 </div>
+ 

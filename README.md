@@ -43,58 +43,48 @@ Inflação Os valores dos ingredientes são alterados com frequência e não gas
 
 ## Solução implementa
 
-A solução implementa foi utilizando um Backend feito em dotnet core. O backend é uma API Rest que vai receber as solicitações da aplicação de Frontend, sua responsabilidade é realizar os cálculos dos lanches e realizar a persistência das informações. Para desenvolvmento da _API_ foi utilizado o Visual Studio 2017 Community.
+A solução foi desenvolvida utilizando um backend em .NET Core. O backend é uma API REST que recebe as solicitações do frontend, realiza os cálculos dos lanches e persiste as informações. Para o desenvolvimento da API, foi utilizado o Visual Studio 2017 Community.
 
-A aplicação de _frontend_ feita em Angular, e tem como responsabilidade exibir de forma intuitiva os lanches permitindo a customização dos lanches e por fim fazer a comunicação com o _backend_ para persistir os dados. Para desenvolvimento do _frontend_ foi utilizado o Visual Studio Code
+A aplicação frontend foi desenvolvida em Angular e é responsável por exibir os lanches de forma intuitiva, permitindo a customização dos mesmos e, finalmente, comunicando-se com o backend para persistir os dados. O desenvolvimento do frontend foi feito no Visual Studio Code.
 
 ### Backend
 
-O Backend foi desenvolvido pensando numa arquitetura o mais próximo o possível de microserviços, devido a simplicidade e por não existir persistências o sistema foi separado em duas camadas: API e Domínio.
+O backend foi projetado com uma arquitetura semelhante à de microserviços. Devido à simplicidade e à ausência de persistência, o sistema foi dividido em duas camadas: API e Domínio.
 
 #### Camada API
 
-A camada de API é utilizada principalmente para realizar a comunicação do mundo externo ao Domínio. Outra responsabilidade da camada é fazer a conversão dos tipos que são enviados pelo cliente para os tipos conhecidos pelo Domínio, as classes que fazem essa conversão ficam na pasta _Factory_. Os tipos que usados para comunicação com o mundo externo são chamados de _ViewModel_.
+A camada de API é utilizada principalmente para a comunicação do mundo externo com o Domínio. Outra responsabilidade da camada é converter os tipos enviados pelo cliente para os tipos conhecidos pelo Domínio. As classes responsáveis por essa conversão estão na pasta Factory. Os tipos usados para comunicação externa são chamados de ViewModel.
 
 #### Camada Domínio
 
-A camada de Domínio foi projetada para seguir um modelo de domínio rico. Dentro desse projeto foram adicionados as classes de Domínio que são representações do objetos que encontramos no sistema que incluem: lanches, pedidos, ingredientes, etc.
+A camada de Domínio foi projetada para seguir um modelo de domínio rico. Dentro desse projeto, foram adicionadas as classes de Domínio que representam os objetos do sistema, incluindo lanches, pedidos, ingredientes, etc.
 
-Esse modelo de foi organizado na pasta _Model_. Abaixa uma lista das classes e suas funções:
-* Inflação - Classe que representa a a inflação do lanche. Ela possui internamente o valor da inflação e regra de cálculo
-* Ingrediente - representa um ingrediente do lanche tendo um valor e nome.
-* Lanche - Suas instâncias representam os lanches oferecidos pela pela statup Lanchonete.
-* LancheItem - Cada lanche pode possuir ingrediente diferente e com quantidades diferentes. Esse classe ainda permite aumentar/diminuir a quantidade de um ingrediente
-* Pedido - O pedido é a classe responsável por agrupar todos os itens de um lanche, nele também são registradas as promoções válidas. Depois de todas as modificações feitas no lanches ele irá calcular o valor final do lanche.
-* PromocaoItemLight, PromocaoItemMuitaCarne, PromocaoItemMuitoQueijo - Verifica se uma pedido pode receber o desconto da promoção e calcula o valor de desconto.
+Este modelo está organizado na pasta Model. Abaixo, uma lista das classes e suas funções:
 
-As classe de comunicação com a API são os _Services_. Essas classes tem como responsabilidade orquestrar o processo de negócio. Abaixo uma pequena descrição das classes principais:
-* PerdidoService - essa classe tem como responsabilidade orquestrar a processo de negócio do pedido, aplicando as promoções validas, realizando a chamada do cálculo do pedido, sua ultima reponsabilidade é delegar a persistência do pedido
-* PromocaoService - Funciona como espécie de _composite_ onde todas as promoções são listadas e aplicadas ao pedido
+Inflação: Classe que representa a inflação do lanche, contendo o valor da inflação e a regra de cálculo.
+Ingrediente: Representa um ingrediente do lanche, com valor e nome.
+Lanche: Representa os lanches oferecidos pela startup Lanchonete.
+LancheItem: Cada lanche pode ter ingredientes diferentes e em quantidades variadas. Esta classe permite aumentar ou diminuir a quantidade de um ingrediente.
+Pedido: Classe responsável por agrupar todos os itens de um lanche e registrar as promoções válidas. Calcula o valor final do lanche após todas as modificações.
+PromocaoItemLight, PromocaoItemMuitaCarne, PromocaoItemMuitoQueijo: Verificam se um pedido pode receber o desconto da promoção e calculam o valor do desconto.
+As classes de comunicação com a API são os Services, responsáveis por orquestrar os processos de negócio. Abaixo, uma breve descrição das principais classes:
 
-Para simular o banco de dados foram criadas _factories_. As _factories_ ficam nesse projeto na pasta _Factory_.
+PedidoService: Orquestra o processo de negócio do pedido, aplicando as promoções válidas, realizando o cálculo do pedido e, finalmente, delegando a persistência do pedido.
+PromocaoService: Funciona como um composite, onde todas as promoções são listadas e aplicadas ao pedido.
+Para simular o banco de dados, foram criadas factories, localizadas na pasta Factory.
 
 #### Projeto de teste
 
-O projeto de teste foi criado para permitir o fácil _refactor_ do fonte e para trazer uma segurança no desenvolvimento. Foram criados teste paras as pricipais funcionalidades do sistema. Para desenvolvimento do teste foi usado o xUnit.
+O projeto de teste foi criado para facilitar o refatoramento do código e garantir a segurança no desenvolvimento. Foram criados testes para as principais funcionalidades do sistema. Para o desenvolvimento dos testes, foi utilizado o xUnit.
 
 ### Frontend
 
-O sistema de _Frontend_ apresenta duas telas: Lanche e Pedido.
+ sistema frontend possui duas telas: Lanche e Pedido.
 
-Na tela de Lanche são listados todos os lanches diponíveis pelo sistema, ao selecionar o lanche é listado abixo quais são os seus ingredientes. A quantidade de cada ingrediente pode ser modifica, então o cliente pode finalizar o pedido ou cancelar.
+Na tela de Lanche, são listados todos os lanches disponíveis no sistema. Ao selecionar um lanche, são exibidos seus ingredientes, permitindo que o usuário modifique a quantidade de cada ingrediente. O cliente pode então finalizar ou cancelar o pedido.
 
-Também possível criar um lanche customiza. Nessa opção são exibidas todos os ingredientes ao cliente pode modificar a quantidade de cada um.
+Também é possível criar um lanche personalizado. Nessa opção, são exibidos todos os ingredientes para que o cliente possa modificar a quantidade de cada um.
 
-Se o cliente decidir fechar o pedido o sistema de frontend iria enviar o lanche criado pelo cliente para o backend que ficará respossável por realizar os cálculos. Quando terminado os cálculos o cliente será redirecionado para a tela de Pedido.
+Ao finalizar o pedido, o sistema frontend envia o lanche criado pelo cliente para o backend, que realiza os cálculos. Após a conclusão dos cálculos, o cliente é redirecionado para a tela de Pedido.
 
-A tela Pedido lista todos os pedidos feitos pelos clientes.
-
-## Implementações futuras
-
-* Sistema para persistência dos lanches, ingredientes, pedidos, etc
-* Utilização de Https no backend e frontend
-
-
-## Referência
-
-* https://docs.microsoft.com/en-us/dotnet/standard/microservices-architecture/microservice-ddd-cqrs-patterns/ddd-oriented-microservice
+Na tela Pedido, são listados todos os pedidos feitos pelos clientes.

@@ -10,10 +10,12 @@ import { LancheComponent } from './lanche/lanche.component';
 import { IngredientesComponent } from './ingredientes/ingredientes.component';
 import { PedidoComponent } from './pedido/pedido.component';
 import { MatButtonModule, MatTableModule, MatToolbar } from '@angular/material';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    HomeComponent,
     LancheComponent,
     IngredientesComponent,
     PedidoComponent
