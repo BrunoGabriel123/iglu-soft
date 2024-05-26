@@ -2,26 +2,6 @@
 
 Este software é uma solução proposta para para uma _startup_ de lanchonete. Para desenvolvê-la foram utilizadas as tecnologias de .net Core para o _Backend_ e Angular 7 para o _Frontend_.
 
-## Instruções para rodar o sistema com docker
-
-O sistema foi desenvolvido utilizando containers no docker. Com o docker devidamente instalado siga as seguintes instruções:
-
-Para iniciar o sistema bastar entra na pastas Lanchonete e executar o appstart.bat. Depois de iniciado todos os serviços do docker, o sistema de _Frontend_ vai responder em [http://localhost](http://localhost) (está utilizando a porta 80). O backend irá responder em [http://localhost:5000/api/values](http:localhost:5000/api/values).
-
-Para desligar o sistema use o appstop.bat.
-
-## Instruções para rodar o front-end sem docker
-
-1) git clone https://github.com/BrunoGabriel123/iglu-soft.git
-2) cd iglu-soft
-3) cd pedido-ui
-4) npm install
-5) npm start
-
-## Instruções para rodar o back-end sem docker
-
-1) git clone https://github.com/BrunoGabriel123/iglu-soft.git
-2) Abra o Visual Studio na solution, de um clean e um build
 
 ## Problema proposto
 
@@ -56,41 +36,21 @@ Inflação Os valores dos ingredientes são alterados com frequência e não gas
 
 ## Solução implementa
 
-A solução foi desenvolvida utilizando um backend em .NET Core. O backend é uma API REST que recebe as solicitações do frontend, realiza os cálculos dos lanches e persiste as informações. Para o desenvolvimento da API, foi utilizado o Visual Studio 2017 Community.
+* Spring
+
+* Java 11
+
+* Gradle
 
 A aplicação frontend foi desenvolvida em Angular e é responsável por exibir os lanches de forma intuitiva, permitindo a customização dos mesmos e, finalmente, comunicando-se com o backend para persistir os dados. O desenvolvimento do frontend foi feito no Visual Studio Code.
 
-### Backend
-
-O backend foi projetado com uma arquitetura semelhante à de microserviços. Devido à simplicidade e à ausência de persistência, o sistema foi dividido em duas camadas: API e Domínio.
-
-#### Camada API
-
-A camada de API é utilizada principalmente para a comunicação do mundo externo com o Domínio. Outra responsabilidade da camada é converter os tipos enviados pelo cliente para os tipos conhecidos pelo Domínio. As classes responsáveis por essa conversão estão na pasta Factory. Os tipos usados para comunicação externa são chamados de ViewModel.
-
-#### Camada Domínio
-
-A camada de Domínio foi projetada para seguir um modelo de domínio rico. Dentro desse projeto, foram adicionadas as classes de Domínio que representam os objetos do sistema, incluindo lanches, pedidos, ingredientes, etc.
-
-Este modelo está organizado na pasta Model. Abaixo, uma lista das classes e suas funções:
-
-Inflação: Classe que representa a inflação do lanche, contendo o valor da inflação e a regra de cálculo.
-Ingrediente: Representa um ingrediente do lanche, com valor e nome.
-Lanche: Representa os lanches oferecidos pela startup Lanchonete.
-LancheItem: Cada lanche pode ter ingredientes diferentes e em quantidades variadas. Esta classe permite aumentar ou diminuir a quantidade de um ingrediente.
-Pedido: Classe responsável por agrupar todos os itens de um lanche e registrar as promoções válidas. Calcula o valor final do lanche após todas as modificações.
-PromocaoItemLight, PromocaoItemMuitaCarne, PromocaoItemMuitoQueijo: Verificam se um pedido pode receber o desconto da promoção e calculam o valor do desconto.
-As classes de comunicação com a API são os Services, responsáveis por orquestrar os processos de negócio. Abaixo, uma breve descrição das principais classes:
-
-PedidoService: Orquestra o processo de negócio do pedido, aplicando as promoções válidas, realizando o cálculo do pedido e, finalmente, delegando a persistência do pedido.
-PromocaoService: Funciona como um composite, onde todas as promoções são listadas e aplicadas ao pedido.
-Para simular o banco de dados, foram criadas factories, localizadas na pasta Factory.
-
-#### Projeto de teste
-
-O projeto de teste foi criado para facilitar o refatoramento do código e garantir a segurança no desenvolvimento. Foram criados testes para as principais funcionalidades do sistema. Para o desenvolvimento dos testes, foi utilizado o xUnit.
-
 ### Frontend
+
+1) git clone https://github.com/BrunoGabriel123/iglu-soft.git
+2) cd iglu-soft
+3) cd pedido-ui
+4) npm install
+5) npm start
 
  sistema frontend possui duas telas: Lanche e Pedido.
 
